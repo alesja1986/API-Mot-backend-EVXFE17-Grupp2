@@ -1,0 +1,5 @@
+Server working. 
+
+Look through code. 
+
+Not connecting to mongodb via postman. error: authentication failed.
