@@ -1,24 +1,20 @@
 import React, { Fragment } from "react";
 
 import DashBoard from "./DashBoard/DashBoard.js";
-import MonthlyEarnings from "./Graphs/MonthlyEarnings/MonthlyEarnings.js";
-import EmailSent from "./Graphs/EmailSent/EmailSent.js";
-import MonthlyEarningsLessIncome from "./Graphs/MonthlyEarningsLessIncome/MonthlyEarningsLessIncome.js";
+import Wrapper from "./Wrapper/Wrapper.js";
 import CardCollection from "./Information/index.js";
-import Transaction from "./Tables/Transaction";
-import Order from "./Tables/Order";
-import {Wrapper} from "./Tables/Wrapper";
+import Graphs from "./Graphs";
+import Tables from "./Tables";
 
 export default render => {
 	render (
-		<Wrapper>
+		<Fragment>
 			<DashBoard />
-			<CardCollection />
-			<MonthlyEarnings />
-			<EmailSent />
-			<MonthlyEarningsLessIncome />
-			<Transaction />
-			<Order />
-		</Wrapper>
+			<Wrapper>
+				<CardCollection />
+				<Graphs />
+				<Tables />
+			</Wrapper>
+		</Fragment>
 	);
 };

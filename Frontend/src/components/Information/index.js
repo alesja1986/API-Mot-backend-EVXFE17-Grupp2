@@ -9,12 +9,12 @@ class CardCollection extends Component {
 	
 	render() {
 		return(
-			<Fragment>
+			<div className="row">
 				<Orders />
 				<Revenue />
 				<AveragePrice />
 				<ProductSold />
-			</Fragment>
+			</div>
 		);
 	}
 }
