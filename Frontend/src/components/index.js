@@ -5,21 +5,20 @@ import MonthlyEarnings from "./Graphs/MonthlyEarnings/MonthlyEarnings.js";
 import EmailSent from "./Graphs/EmailSent/EmailSent.js";
 import MonthlyEarningsLessIncome from "./Graphs/MonthlyEarningsLessIncome/MonthlyEarningsLessIncome.js";
 import CardCollection from "./Information/index.js";
+import Transaction from "./Tables/Transaction";
+import Order from "./Tables/Order";
+import {Wrapper} from "./Tables/Wrapper";
 
 export default render => {
 	render (
-		<Fragment>
+		<Wrapper>
 			<DashBoard />
-			<div class="wrapper">
-				<div class="container-fluid">
-					<div class="row">
-						<CardCollection />
-						<MonthlyEarnings />
-						<EmailSent />
-						<MonthlyEarningsLessIncome />
-					</div>
-				</div>
-			</div>
-		</Fragment>
+			<CardCollection />
+			<MonthlyEarnings />
+			<EmailSent />
+			<MonthlyEarningsLessIncome />
+			<Transaction />
+			<Order />
+		</Wrapper>
 	);
 };
