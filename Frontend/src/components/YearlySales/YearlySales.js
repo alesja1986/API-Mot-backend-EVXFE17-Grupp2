@@ -11,7 +11,7 @@ class YearlySales extends Component {
 					<div className="col-md-4">
 						<div>
 							<h4>52,345</h4>
-							<p className="text-muted">The languadges only differ grammar</p>
+							<p className="text-muted">The languadges only differ grammars</p>
 							<a href="#" className="text-primary">Learn more <i className="mdi mdi-chevron-double-right"></i></a>
 						</div>
 					</div>
