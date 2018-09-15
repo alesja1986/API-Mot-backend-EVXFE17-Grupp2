@@ -12,7 +12,6 @@ exports.createTransaction = (req, res, next) => {
     let transaction = new Transaction({
         _id: new mongodb.Types.ObjectId(),
         name: req.body.name,
-        productname: req.body.productname,
         status: req.body.status,
         price: req.body.price,
     })
