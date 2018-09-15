@@ -5,6 +5,7 @@ const transactionSchema = mongodb.Schema({
     name: String,
     status: String,
     price: String,
+    edit: Boolean,
     created: { type: Date, default: Date.now },
 })
 

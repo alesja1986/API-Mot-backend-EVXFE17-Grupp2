@@ -1,6 +1,6 @@
 import React from "react";
 
-export const ItemComponent = ({name, status, price, created}) => (
+export const ItemComponent = ({name, status, price, created, edit, editProperties}) => (
 	<tr>
 		<td>
 			<img src="assets/images/users/user-2.jpg" alt="user-image" className="thumb-sm rounded-circle mr-2"/>
@@ -24,7 +24,23 @@ export const ItemComponent = ({name, status, price, created}) => (
 			<p className="m-0 text-muted font-14">Date</p>
 		</td>
 		<td>
-			<button type="button" className="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
+			<button type="button" className="btn btn-secondary btn-sm waves-effect waves-light" onClick={edit}>Edit</button>
 		</td>
+		{editProperties === true && 
+		<tr>
+			<td>
+				<input type="text" placeholder="edit name..." />
+			</td>
+			<td>
+				<input type="text" placeholder="edit status..." />
+			</td>
+			<td>
+				<input type="text" placeholder="edit price..." />
+			</td>
+			<td>
+				<button>Submit</button>
+			</td>
+		</tr>
+		}
 	</tr>
 );

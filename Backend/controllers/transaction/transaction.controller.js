@@ -14,6 +14,7 @@ exports.createTransaction = (req, res, next) => {
         name: req.body.name,
         status: req.body.status,
         price: req.body.price,
+        edit: false
     })
 
     transaction.save()

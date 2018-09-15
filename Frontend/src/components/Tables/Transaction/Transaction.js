@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import update from "react-addons-update"; // ES6
 import { ItemComponent } from "./Item.component";
 
 class Transaction extends Component {
@@ -27,7 +28,11 @@ class Transaction extends Component {
 					});
 				}
 			);
-	
+	}
+
+	editTransaction = (i) => {
+		this.state.transactions[i].edit = !this.state.transactions[i].edit;
+		this.forceUpdate();
 	}
 
 	render(){
@@ -41,8 +46,8 @@ class Transaction extends Component {
 							<table className="table table-vertical">
 
 								<tbody>
-									{this.state.transactions.map((item) => {
-										return <ItemComponent name={item.name} status={item.status} price={item.price} created={item.created} />;
+									{this.state.transactions.map((item, i) => {
+										return <ItemComponent key={i} index={i} name={item.name} status={item.status} price={item.price} created={item.created} editProperties={item.edit} edit={() => this.editTransaction(i)} />;
 									})}
 								</tbody>
 							</table>
