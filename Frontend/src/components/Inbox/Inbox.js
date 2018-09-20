@@ -1,19 +1,35 @@
 import React, { Component } from "react";
-import Emails from "./emails";
-
-class Inbox extends Component {
-
+import update from "react-addons-update";
+import { EmailComponent } from "./Emails.js";
 
 
+
+class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            emails: []
+        };
+    }
+
+    componentDidMount() {
+        fetch("http://localhost:3001/api/inbox/")
+            .then(res => res.json())
+            .then(
+            (data) => {
+                this.setState({
+                    emails: data
+                });
+            },
+
+            (error) => {
+                this.setState({
+                    error
+                });
+            }
+            );
+    }
     render() {
-
-        let email;
-        if (this.props.emails) {
-            email = this.props.emails.map(item => {
-                return (<Emails key={item.name} item={item} />);
-            })
-        }
-
         return (
             <div className="row">
 
@@ -22,16 +38,18 @@ class Inbox extends Component {
                         <div className="card-body">
                             <h4 className="mt-0 header-title mb-3">Inbox</h4>
                             <div className="inbox-wid">
-                                {email}
+                                {this.state.emails.map((item, i) => {
+                                    return <EmailComponent key={i} name={item.name} message={item.message} created={item.created} />;
+                                })}
                             </div>
                         </div>
                     </div>
                 </div>
 
             </div>
-
-        );
+        )
     }
+
 }
 
-export default Inbox;
+export default App;
