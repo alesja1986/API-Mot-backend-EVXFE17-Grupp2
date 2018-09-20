@@ -41,38 +41,8 @@ app.use(bodyParser.json()); // we can now send json to the body parser
 
 //API Routes
 
-const userRoute = require('../routes/userroutes/users'); //pointing att the products.js file
-app.use('/api/users', userRoute); // if i go on url api/products we will go to the products.js file
+const inboxRoute = require('../routes/inboxroutes/inboxroute.js'); //pointing att the products.js file
+app.use('/api/inbox', inboxRoute); // if i go on url api/products we will go to tje products.js file
 //adding routes
 
 module.exports = app; // exporting this file
-
-
-
-///////*****************///////
-
-
-// const bodyParser = require('body-parser');
-// const express = require('express');
-// const app = express();
-
-// //CORS - Error Handling
-// app.use((req, res, next) => {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-//     if (req.method === 'OPTIONS') {
-//         res.header('Access-Control-Allow-Methods', "GET, POST, PUT, PATCH, DELETE");
-//         return res.status(200).json({});
-//     }
-//     next();
-// });
-
-// //Body Parser
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
-
-// //REST API Routes
-// const userRoutes = require('../routes/userroutes/users.js');
-// app.use('/api/users', userRoutes);
-
-// module.exports = app;

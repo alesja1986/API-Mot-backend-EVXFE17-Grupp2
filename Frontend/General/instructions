@@ -1,0 +1,15 @@
+To start server:
+
+go to backend folder in terminal
+
+run: npm start
+
+
+Go to fronend folder in terminal
+
+run: 
+npm run-script build (making new bundle.js)
+npm start
+
+Go to dist/index.html and right-click, then choose start live server
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

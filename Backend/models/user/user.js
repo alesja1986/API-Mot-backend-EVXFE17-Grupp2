@@ -8,3 +8,4 @@ const userSchema = db.Schema({
 });
 
 module.exports = db.model('User', userSchema);
+

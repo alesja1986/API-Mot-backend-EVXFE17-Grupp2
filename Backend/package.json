@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "./Login/server.js",
+  "main": "./Inbox/server.js",
   "scripts": {
     "test": "mocha",
     "start": "nodemon server.js"

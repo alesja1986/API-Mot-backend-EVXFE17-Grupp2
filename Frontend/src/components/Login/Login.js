@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class Login extends Component {
     state = {
-        username: '',
-        password: ''
+        username: "",
+        password: ""
     };
 
     onChange = e => {
@@ -44,13 +44,12 @@ class Login extends Component {
                         value={password}
                         onChange={this.onChange}
                     />
-
                 </form>
                 <button id="loginBtn">Login</button>
             </div>
 
-        )
+        );
     }
-};
+}
 
 export default Login;
