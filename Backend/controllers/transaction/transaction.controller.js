@@ -25,3 +25,15 @@ exports.createTransaction = (req, res, next) => {
     .catch((err) => console.log(err))
 };
 
+exports.updateTransaction = (req, res, next) => {
+    Transaction.findOneAndUpdate({_id: req.body._id}, {$set:{name: req.body.name, status: req.body.status, price: req.body.price}}, {new: true}, function(err, doc){
+        err ? res.status(500).json({error: err}) : res.status(200).json(doc)
+    });
+};
+
+exports.deleteTransaction = (req, res, next) => {
+    Transaction.findByIdAndRemove({_id: req.body._id}, (err, response) => {
+        err ? res.status(500).json({error: err}) : res.status(204);
+     })
+};
+

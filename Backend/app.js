@@ -23,11 +23,12 @@ app.use(bodyParser.json());
 //Route imports below 
 const exampleRoutes = require("./routes/exampleRoute/exampleRoute.js");
 const transactionRoute = require('./routes/transactionRoute/transaction.route');
+const orderRoute = require('./routes/orderRoute/order.route');
 
 //rest api route declares below 
 app.use("/api/example", exampleRoutes);
 app.use('/api/transactions', transactionRoute);
-
+app.use("/api/orders", orderRoute);
 
 //
 module.exports = app;

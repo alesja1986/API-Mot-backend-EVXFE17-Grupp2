@@ -1,6 +1,63 @@
 import React, {Component} from "react";
+import { ItemComponent } from "./Item.component";
 
 class Order extends Component {
+	constructor() {
+		super();
+		this.state = {
+			orders: []
+		};
+	}
+
+	componentDidMount() {
+		fetch("http://localhost:3001/api/orders/")
+			.then(res => res.json())
+			.then(
+				(result) => {
+					this.setState({
+						orders: result
+					});
+				},
+				// Note: it's important to handle errors here
+				// instead of a catch() block so that we don't swallow
+				// exceptions from actual bugs in components.
+				(error) => {
+					this.setState({
+						error
+					});
+				}
+			);
+	}
+
+	editOrder = (i) => {
+		this.state.orders[i].edit = !this.state.orders[i].edit;
+		this.forceUpdate();
+	}
+
+	saveEdit = (i, item) => {
+		let val1 = document.getElementById(`editProductName${i}`).value;
+		let val2 = document.getElementById(`editProductStatus${i}`).value;
+		let val3 = document.getElementById(`editProductPrice${i}`).value;
+
+		fetch(`http://localhost:3001/api/orders/${item._id}`, {
+			method: "PUT",
+			headers: {
+				"Accept": "application/json; test/plain */*",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({_id: item._id, name: val1, status: val2, price: val3})
+		})
+			.then(res => res.json())
+			.then(data => {
+				console.log(data);
+			})
+			.catch((err) => console.log(err));
+		this.state.orders[i].productname = val1;
+		this.state.orders[i].status = val2;
+		this.state.orders[i].price = val3;
+		this.state.orders[i].edit = false;
+		this.forceUpdate();
+	}
 
 	render(){
 		return (
@@ -13,113 +70,9 @@ class Order extends Component {
 							<table className="table table-vertical mb-1">
 
 								<tbody>
-									<tr>
-										<td>#12354781</td>
-										<td>
-											<img src="assets/images/users/user-1.jpg" alt="user-image" className="thumb-sm mr-2 rounded-circle"/>
-                                                Riverston Glass Chair
-										</td>
-										<td><span className="badge badge-pill badge-success">Delivered</span></td>
-										<td>
-                                                $185
-										</td>
-										<td>
-                                                5/12/2016
-										</td>
-										<td>
-											<button type="button" className="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
-										</td>
-									</tr>
-
-									<tr>
-										<td>#52140300</td>
-										<td>
-											<img src="assets/images/users/user-2.jpg" alt="user-image" className="thumb-sm mr-2 rounded-circle"/>
-                                                Shine Company Catalina
-										</td>
-										<td><span className="badge badge-pill badge-success">Delivered</span></td>
-										<td>
-                                                $1,024
-										</td>
-										<td>
-                                                5/12/2016
-										</td>
-										<td>
-											<button type="button" className="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
-										</td>
-									</tr>
-
-									<tr>
-										<td>#96254137</td>
-										<td>
-											<img src="assets/images/users/user-3.jpg" alt="user-image" className="thumb-sm mr-2 rounded-circle"/>
-                                                Trex Outdoor Furniture Cape
-										</td>
-										<td><span className="badge badge-pill badge-danger">Cancel</span></td>
-										<td>
-                                                $657
-										</td>
-										<td>
-                                                5/12/2016
-										</td>
-										<td>
-											<button type="button" className="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
-										</td>
-									</tr>
-
-									<tr>
-										<td>#12365474</td>
-										<td>
-											<img src="assets/images/users/user-4.jpg" alt="user-image" className="thumb-sm mr-2 rounded-circle"/>
-                                                Oasis Bathroom Teak Corner
-										</td>
-										<td><span className="badge badge-pill badge-warning">Shipped</span></td>
-										<td>
-                                                $8451
-										</td>
-										<td>
-                                                5/12/2016
-										</td>
-										<td>
-											<button type="button" className="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
-										</td>
-									</tr>
-
-									<tr>
-										<td>#85214796</td>
-										<td>
-											<img src="assets/images/users/user-5.jpg" alt="user-image" className="thumb-sm mr-2 rounded-circle"/>
-                                                BeoPlay Speaker
-										</td>
-										<td><span className="badge badge-pill badge-success">Delivered</span></td>
-										<td>
-                                                $584
-										</td>
-										<td>
-                                                5/12/2016
-										</td>
-										<td>
-											<button type="button" className="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
-										</td>
-									</tr>
-									<tr>
-										<td>#12354781</td>
-										<td>
-											<img src="assets/images/users/user-6.jpg" alt="user-image" className="thumb-sm mr-2 rounded-circle"/>
-                                                Riverston Glass Chair
-										</td>
-										<td><span className="badge badge-pill badge-success">Delivered</span></td>
-										<td>
-                                                $185
-										</td>
-										<td>
-                                                5/12/2016
-										</td>
-										<td>
-											<button type="button" className="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
-										</td>
-									</tr>
-
+									{this.state.orders.map((item, i) => {
+										return <ItemComponent key={i} index={i} productname={item.productname} status={item.status} price={item.price} created={item.created} editProperties={item.edit} edit={() => this.editOrder(i)} saveEdit={() => this.saveEdit(i, item)} />;
+									})}
 								</tbody>
 							</table>
 						</div>

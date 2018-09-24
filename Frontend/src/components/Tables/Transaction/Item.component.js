@@ -1,6 +1,6 @@
-import React from "react";
+import React, {Fragment} from "react";
 
-export const ItemComponent = ({name, status, price, created, edit, editProperties}) => (
+export const ItemComponent = ({name, status, price, created, edit, editProperties, saveEdit, deleteItem, index}) => (
 	<tr>
 		<td>
 			<img src="assets/images/users/user-2.jpg" alt="user-image" className="thumb-sm rounded-circle mr-2"/>
@@ -26,21 +26,28 @@ export const ItemComponent = ({name, status, price, created, edit, editPropertie
 		<td>
 			<button type="button" className="btn btn-secondary btn-sm waves-effect waves-light" onClick={edit}>Edit</button>
 		</td>
+		<td>
+			<button type="button" className="btn btn-danger btn-sm waves-effect waves-light" onClick={deleteItem}>Delete</button>
+		</td>
 		{editProperties === true && 
-		<tr>
+		<Fragment>
 			<td>
-				<input type="text" placeholder="edit name..." />
+				<input type="text" placeholder="edit name..." id={`editName${index}`} defaultValue={name} />
 			</td>
 			<td>
-				<input type="text" placeholder="edit status..." />
+				<select id={`editStatus${index}`} defaultValue={status}>
+					<option>Confirmed</option>
+					<option>Waiting</option>
+					<option>Expired</option>
+				</select>
 			</td>
 			<td>
-				<input type="text" placeholder="edit price..." />
+				<input type="text" placeholder="edit price..." id={`editPrice${index}`} defaultValue={price} />
 			</td>
 			<td>
-				<button>Submit</button>
+				<button type="submit" onClick={saveEdit}>Submit</button>
 			</td>
-		</tr>
+		</Fragment>
 		}
 	</tr>
 );
