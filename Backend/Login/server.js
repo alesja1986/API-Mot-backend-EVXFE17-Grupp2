@@ -1,13 +1,42 @@
-// this is our webserver for the api
-const port = process.env.port || 3001;
-// 3001 is standard if we dont have an online webserver
-const http = require('http'); // require is a buildt in library in node
-const app = require('./app'); // our middleware
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const app = express();
+var mongoose = require('mongoose');
+var port = process.env.PORT || 3001;
+
+app.use(bodyParser.json())
+app.use(cors())
+app.use(
+    bodyParser.urlencoded({
+        extended: false
+    })
+);
+
+const mongoURI = 'mongodb://localhost:27017/api';
+mongoose.connect(mongoURI, { useNewUrlParser: true })
+    .then(() => console.log("MongoDB connected"))
+    .catch(err => console.log(err));
+
+var Users = require('../routes/userroutes/users');
+app.use('/users', Users);
+
+app.listen(port, () => {
+    console.log("server is running on port" + port)
+});
+
+/////**************************/////
+
+// // this is our webserver for the api
+// const port = process.env.port || 3001;
+// // 3001 is standard if we dont have an online webserver
+// const http = require('http'); // require is a buildt in library in node
+// const app = require('./app'); // our middleware
 
 
-http.createServer(app).listen(port);//start webserver
+// http.createServer(app).listen(port);//start webserver
 
-//..... al we need to start webserver. incl app.js
+// //..... al we need to start webserver. incl app.js
 
 
 /////**************************/////

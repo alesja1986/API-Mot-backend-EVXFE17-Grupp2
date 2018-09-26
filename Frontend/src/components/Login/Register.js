@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { login } from "./UserFunctions";
+import { register } from "./UserFunctions";
 
-class Login extends Component {
+class Register extends Component {
     constructor() {
-        super();
+        super()
         this.state = {
             username: "",
             password: ""
-        };
+        }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -23,10 +23,8 @@ class Login extends Component {
             password: this.state.password
         };
 
-        login(user).then(res => {
-            if (res) {
-                this.props.history.push(`/profile`);
-            }
+        register(user).then(res => {
+            this.props.history.push(`/login`);
         });
     }
 
@@ -36,10 +34,10 @@ class Login extends Component {
                 <div className="row">
                     <div className="col-md-6 mt-5 mx-auto">
                         <form noValidate onSubmit={this.onSubmit}>
-                            <h1 className="h3 mb-3 font-weight-normal">Please Sign in</h1>
+                            <h1 className="h3 mb-3 font-weight-normal">Register here</h1>
                             <div className="form-group">
                                 <label htmlFor="username">Username</label>
-                                <input type="username"
+                                <input type="text"
                                     className="form-control"
                                     name="username"
                                     placeholder="Enter username"
@@ -56,7 +54,7 @@ class Login extends Component {
                                     onChange={this.onChange} />
                             </div>
                             <button type="submit" className="btn btn-lg btn-primary btn-block">
-                                Sign in
+                                Sign up
                             </button>
                         </form>
                     </div>
@@ -66,4 +64,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default Register;
