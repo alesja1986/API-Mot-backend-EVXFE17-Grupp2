@@ -2,9 +2,11 @@ const db = require("mongoose");
 
 const salesSchema = db.Schema({
     _id: db.Schema.Types.ObjectId,
-    email: { type: String, require: true, unique: true, match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ },
-    firstname: { type: String, require: true },
-    lastname: { type: String, require: true }
+    name:String,
+    price:Number,
+    quantity:Number,
+    total:Number,
+    Date:Date
 });
 
 module.exports = db.model("YearlySales", salesSchema);

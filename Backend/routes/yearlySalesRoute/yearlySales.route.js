@@ -1,8 +1,7 @@
 const route = require("express").Router();
 
-const YearlySales = require("../../controllers/yearlySales/yearlySales.controller.js");
+const yearlySales = require("../../controllers/yearlySales/yearlySales.controller.js");
 
 //Unsecured routes
-route.post("/", YearlySales.minFunktion);
-
+route.get("/", yearlySales.yearlySales);
 module.exports = route;
