@@ -2,8 +2,9 @@ const db = require("mongoose");
 const RecentActivity = require("../../models/recentActivity/recentActivity.model.js");
 
 
-exports.recentActivity = (req,res) => {
-        RecentActivity.find().sort('-date')
+exports.recentActivity = (req,res,) => {
+        const skip = parseInt(req.params.skipvalue);
+        RecentActivity.find().sort('-date').skip(skip).limit(4)
         .exec()
         .then(result => {
             console.log(result);
@@ -15,4 +16,4 @@ exports.recentActivity = (req,res) => {
             error:err
     });
 });
-    };
+};
