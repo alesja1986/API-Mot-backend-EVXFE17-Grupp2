@@ -1,60 +1,82 @@
-const mongoose = require('mongoose');
-const express = require('express');
-const users = express.Router();
-const cors = require('cors');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 
-const User = require('../../models/user/user');
-users.use(cors());
+const express = require("express")
+const route = express.Router()
+const cors = require("cors")
+const jwt = require("jsonwebtoken")
+const bcrypt = require("bcrypt")
+const db = require("mongoose");
 
-process.env.SECRET_KEY = "secret";
+const User = require("../models/user")
+route.use(cors())
 
-users.post('/register', (req, res) => {
-    let today = new Date();
-    let userData = {
-        _id: new mongoose.Types.ObjectId(),
+process.env.SECRET_KEY = 'secret'
+
+
+//GET registered users - FOR TESTING
+route.get('/register', (req, res, next) => {
+    // object orientated javascript using mongoose template
+    User
+        .find()   // we can do .find().where() if we want to find a specific name of id in the database
+        .exec()
+        .then((users) => {
+
+            console.log(users);
+            res.status(200).json(users); // if OK json strygify and return data
+        })// what to do with data returned from get request
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        })
+});
+
+
+route.post('/register', (req, res) => {
+    const today = new Date()
+    const userData = {
+        _id: new db.Types.ObjectId(),
         username: req.body.username,
         password: req.body.password,
         created: today
     }
+
     User.findOne({
         username: req.body.username
     })
         .then(user => {
             if (!user) {
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
-                    userData.password = hash,
-                        User.create(userData)
-                            .then(user => {
-                                res.json({ status: user.username + "was registered successfully" })
-                            })
-                            .catch(err => {
-                                res.send("error:" + err)
-                            })
+                    userData.password = hash
+                    User.create(userData)
+                        .then(user => {
+                            res.json({ status: user.username + ' registered!' })
+                        })
+                        .catch(err => {
+                            res.send('error: ' + err)
+                        })
                 })
-
             } else {
-                res.json({ error: "User already exists" })
+                res.json({ error: 'User already exists' })
             }
         })
         .catch(err => {
-            res.send("error:" + err)
+            res.send('error: ' + err)
         })
 })
 
-users.post('/login', (req, res) => {
+route.post('/login', (req, res) => {
     User.findOne({
-        username: req.body.username
+        email: req.body.email
     })
         .then(user => {
             if (user) {
                 if (bcrypt.compareSync(req.body.password, user.password)) {
-                    const loginUser = {
+                    const payload = {
                         _id: user._id,
-                        username: user.username
+                        email: user.username
                     }
-                    let token = jwt.sign(loginUser, process.env.SECRET_KEY, {
+                    let token = jwt.sign(payload, process.env.SECRET_KEY, {
                         expiresIn: 5000
                     })
                     res.send(token)
@@ -66,12 +88,13 @@ users.post('/login', (req, res) => {
             }
         })
         .catch(err => {
-            res.send("error: " + err)
+            res.send('error: ' + err)
         })
 })
 
-users.get('/profile', (req, res) => {
-    const decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+route.get('/profile', (req, res) => {
+    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+
     User.findOne({
         _id: decoded._id
     })
@@ -83,11 +106,11 @@ users.get('/profile', (req, res) => {
             }
         })
         .catch(err => {
-            res.send("error :" + err)
+            res.send('error: ' + err)
         })
 })
 
-module.exports = users;
+module.exports = route;
 
 
 

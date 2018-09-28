@@ -18,7 +18,7 @@ mongoose.connect(mongoURI, { useNewUrlParser: true })
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.log(err));
 
-var Users = require('../routes/userroutes/users');
+var Users = require('../routes/users');
 app.use('/users', Users);
 
 app.listen(port, () => {

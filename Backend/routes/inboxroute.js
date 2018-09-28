@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const route = express.Router();
 
-const uri = 'http://localhost:3001/api/inbox/';
+const uri = 'http://localhost:3001/api/inbox/';  //WHY NOT USED?
 
 //MongoDB Schema - Product
 const Email = require('../../models/inbox/inbox');
