@@ -3,19 +3,22 @@ import moment from "./moment.js";  // modul för 'Date' hantering
 
 class RecentActivity extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             activityArray:[],  //array med 'Recent Activity Feed ',
-            quantity:0,
+            quantity:0
         };
      }
 
-componentDidMount(){
+componentWillMount(){
+    console.log(this.state)
       this.fetchRecentActivities();
+      console.log(this.state)
 }
 
-fetchRecentActivities =(addQuantaty)=>{
+fetchRecentActivities =()=>{
+    let newState = this.state; 
     fetch(`http://localhost:3001/api/recentActivity/${this.state.quantity}`,{
         method:"POST",
         headers: {
@@ -24,27 +27,30 @@ fetchRecentActivities =(addQuantaty)=>{
         },
     })
     .then(res => res.json())        
-    .then(result => 
-         this.setState({activityArray:result,quantity:this.state.quantity + 4},console.log(result))),
-    (error => console.log(error));  
+    .then(result => {
+          newState.activityArray = this.state.activityArray.concat(result),
+          newState.quantity=this.state.quantity +4,
+         this.setState(newState)
+        })
+        .catch(error => console.log(error));  
 }
-
 	render(){
-		return (  
+		return (
             <div className="col-xl-4 col-lg-6">
             <div className="card m-b-20">
-                <div className="card-body">
-                    <h4 className="mt-0 header-title mb-4">Recent Activity Feed</h4>
-                    <ol className="activity-feed mb-0">     			
-                            {this.state.activityArray.map(function(item, i){
-                                 const date = item.date
+                <div className="card-body" style={{overflowY : 'Scroll' , height :540}}>
+                    <h4 className="mt-0 header-title mb-4" >Recent Activity Feed</h4>
+                    <ol className="activity-feed mb-0" >    			
+                            {this.state.activityArray.map((item, i)=>{
+                                  const date = item.date;
                                   let parseDate = Date.parse(date);
-                                  let readyDate=moment(parseDate).format('MMM DD');                  
+                                  let readyDate=moment(parseDate).format('MMM DD');    
+                                  console.log('im date ' + readyDate, 'Im activity' + item.activity)              
                                
                                   return (
                                       <li className="feed-item" key={item.i}>
                                          <div className="feed-item-list">
-                                           <span className="date">{readyDate}</span>
+                                           <span className="date">'{readyDate}'</span>
                                             <span className="activity-text">{item.activity}</span>
                                         </div>
                                     </li>)})}

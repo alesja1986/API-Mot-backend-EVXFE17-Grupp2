@@ -7,7 +7,7 @@ import YearlySales from "./YearlySales/YearlySales.js";
 export default render => {
 	render (
 		<Fragment>
-		
+		   <DashBoard/>
 			<RecentActivity/>
 			<YearlySales/>
 		</Fragment>
