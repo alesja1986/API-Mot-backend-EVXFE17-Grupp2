@@ -45,7 +45,6 @@ class EmailSent extends Component {
 				return sum;
 			}
 			for(let year in this.state){
-				console.log(this.state[year]);
 				sum += this.state[year];
 			}
 		}
@@ -71,10 +70,6 @@ class EmailSent extends Component {
 							<div className="col-4">
 								<h5 className="">{this.year()}</h5>
 								<p className="text-muted ">Total Emails</p>
-							</div>
-							<div className="col-4">
-								<h5 className="">$ 8974</h5>
-								<p className="text-muted ">Last Month</p>
 							</div>
 						</div>
 

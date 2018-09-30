@@ -35,18 +35,24 @@ class MonthlyEarnings extends Component {
 			.catch(error => console.log(error));
 	}
 
-	price = () => {
+	price = (data = false) => {
 		let sum = "Loading";
+		
 		if(this.state !== null){
+			if(data !== false){
+				sum = 0;
+				for(let key in this.state["Store"]){
+					sum += this.state["Store"][key].price;
+				}
+				return sum;
+			}
+
 			sum = 0;
 			for(let type in this.state){
 				for(let {price} of this.state[type]){
 					sum += price;
 				}
 			}
-			// for(let {price} of this.state.Email){
-			// 	sum += price;
-			// }
 		}
 		return sum;
 	}
@@ -60,11 +66,11 @@ class MonthlyEarnings extends Component {
 
 						<div className="row text-center m-t-20">
 							<div className="col-6">
-								<h5 className="">$ {this.price()}</h5>
+								<h5 className="">$ {this.price("market")}</h5>
 								<p className="text-muted ">Marketplace</p>
 							</div>
 							<div className="col-6">
-								<h5 className="">$23651</h5>
+								<h5 className="">{this.price()}</h5>
 								<p className="text-muted ">Total Income</p>
 							</div>
 						</div>
