@@ -4,23 +4,23 @@ class MonthlyEarningsLessIncome extends Component {
 
 	render(){
 		return(
-			<div class="col-xl-3">
-				<div class="card m-b-20">
-					<div class="card-body">
-						<h4 class="mt-0 header-title">Monthly Earnings</h4>
+			<div className="col-xl-3">
+				<div className="card m-b-20">
+					<div className="card-body">
+						<h4 className="mt-0 header-title">Monthly Earnings</h4>
 
-						<div class="row text-center m-t-20">
-							<div class="col-6">
-								<h5 class="">$ 2548</h5>
-								<p class="text-muted ">Marketplace</p>
+						<div className="row text-center m-t-20">
+							<div className="col-6">
+								<h5 className="">$ 2548</h5>
+								<p className="text-muted ">Marketplace</p>
 							</div>
-							<div class="col-6">
-								<h5 class="">$ 6985</h5>
-								<p class="text-muted ">Total Income</p>
+							<div className="col-6">
+								<h5 className="">$ 6985</h5>
+								<p className="text-muted ">Total Income</p>
 							</div>
 						</div>
 
-						<div id="morris-bar-stacked" class="dashboard-charts morris-charts"></div>
+						<div id="morris-bar-stacked" className="dashboard-charts morris-charts"></div>
 					</div>
 				</div>
 			</div>

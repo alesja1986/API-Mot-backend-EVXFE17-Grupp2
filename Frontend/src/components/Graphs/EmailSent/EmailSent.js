@@ -2,29 +2,83 @@ import React, { Component, Fragment } from "react";
 
 class EmailSent extends Component {
 
-	render(){
-		return(
-			<div class="col-xl-6">
-				<div class="card m-b-20">
-					<div class="card-body">
-						<h4 class="mt-0 header-title">Email Sent</h4>
+	componentDidMount(){
+		fetch("http://localhost:3001/email")
+			.then(result => result.json())
+			.then(res => {
+				let state = {};
+				let data = [];
 
-						<div class="row text-center m-t-20">
-							<div class="col-4">
-								<h5 class="">$ 89425</h5>
-								<p class="text-muted ">Marketplace</p>
+				//Sort and order years and values
+				for(let type in res){
+					if(state[new Date(res[type].created).getFullYear()] !== undefined){
+						state[new Date(res[type].created).getFullYear()] += 1;
+					}else{
+						state = {
+							...state,
+							[new Date(res[type].created).getFullYear()]: 1,
+						};
+					}
+				}
+
+				//format for Morris Graph - 
+				for(let type in state){
+					data = [
+						...data,
+						{ y: type, a: state[type] }
+					];
+				}
+				this.setState({
+					...state
+				});
+				window.localStorage.setItem("emailGraph", JSON.stringify(data));
+			})
+			.catch(error => console.log(error));
+	}
+
+	year = (current = false) => {
+		let sum = "loading";
+		if(this.state !== null){
+			sum = 0;
+			if(current !== false){
+				sum = this.state[current];
+				return sum;
+			}
+			for(let year in this.state){
+				console.log(this.state[year]);
+				sum += this.state[year];
+			}
+		}
+		return sum;
+	}
+
+	render(){
+
+		// if(res !== null){
+		// 	this.year(new Date().getFullYear());
+		// }
+		return(
+			<div className="col-xl-6">
+				<div className="card m-b-20">
+					<div className="card-body">
+						<h4 className="mt-0 header-title">Email Sent</h4>
+
+						<div className="row text-center m-t-20">
+							<div className="col-4">
+								<h5 className="">{this.year(new Date().getFullYear())}</h5>
+								<p className="text-muted ">This Year</p>
 							</div>
-							<div class="col-4">
-								<h5 class="">$ 56210</h5>
-								<p class="text-muted ">Total Income</p>
+							<div className="col-4">
+								<h5 className="">{this.year()}</h5>
+								<p className="text-muted ">Total Emails</p>
 							</div>
-							<div class="col-4">
-								<h5 class="">$ 8974</h5>
-								<p class="text-muted ">Last Month</p>
+							<div className="col-4">
+								<h5 className="">$ 8974</h5>
+								<p className="text-muted ">Last Month</p>
 							</div>
 						</div>
 
-						<div id="morris-area-example" class="dashboard-charts morris-charts"></div>
+						<div id="morris-area" className="dashboard-charts morris-charts"></div>
 					</div>
 				</div>
 			</div>

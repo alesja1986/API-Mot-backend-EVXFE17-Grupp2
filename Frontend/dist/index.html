@@ -29,10 +29,36 @@
         <!--Morris Chart-->
         <script src="plugins/morris/morris.min.js"></script>
         <script src="plugins/raphael/raphael-min.js"></script>
-        <script src="assets/pages/dashboard.js"></script>
-        
+        <script src="assets/pages/dashboard.js"></script>        
 
         <!-- App js -->
-        <script src="assets/js/app.js"></script>    
+        <script src="assets/js/app.js"></script>  
+        
+        <script>{
+            const donutData = JSON.parse(window.localStorage.getItem("monthlyEarningsLeft"));
+            window.localStorage.removeItem("monthlyEarningsLeft");
+            Morris.Donut({
+                element: "morris-donut",
+
+                data: [
+                    {label: "Download Sales", value: donutData.download},
+                    {label: "In-Store Sales", value: donutData.store},
+                    {label: "Mail-Order Sales", value: donutData.email}
+                ]
+            })
+        }</script>
+
+        <script>{
+            const data = JSON.parse(window.localStorage.getItem("emailGraph"));
+            window.localStorage.removeItem("emailGraph");
+            Morris.Area({
+                element: 'morris-area',
+                data,
+                xkey: 'y',
+                ykeys: ['a'],
+                labels: ['Series A', 'Series B']
+            });
+        }</script>
+
     </body>
 </html>

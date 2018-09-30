@@ -7,7 +7,7 @@ class Tables extends Component {
 	
 	render() {
 		return(
-			<div class="row">
+			<div className="row">
 				<Transaction />
 				<Order />
 			</div>

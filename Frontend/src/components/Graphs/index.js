@@ -8,7 +8,7 @@ class Graphs extends Component {
 	
 	render() {
 		return(
-			<div class="row">
+			<div className="row">
 				<MonthlyEarnings />
 				<EmailSent />
 				<MonthlyEarningsLessIncome />
