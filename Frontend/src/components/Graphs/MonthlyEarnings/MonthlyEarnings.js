@@ -6,13 +6,13 @@ class MonthlyEarnings extends Component {
 	componentDidMount(){
 
 		const promises = [
-			fetch("http://localhost:3001/monthlyearningleft/Email")
+			fetch("http://localhost:3001/api/monthlyearningleft/Email")
 				.then(result => result.json()),
 		
-			fetch("http://localhost:3001/monthlyearningleft/Store")
+			fetch("http://localhost:3001/api/monthlyearningleft/Store")
 				.then(result => result.json()),
 
-			fetch("http://localhost:3001/monthlyearningleft/Download")
+			fetch("http://localhost:3001/api/monthlyearningleft/Download")
 				.then(result => result.json())
 		];
 		
@@ -70,7 +70,7 @@ class MonthlyEarnings extends Component {
 								<p className="text-muted ">Marketplace</p>
 							</div>
 							<div className="col-6">
-								<h5 className="">{this.price()}</h5>
+								<h5 className="">$ {this.price()}</h5>
 								<p className="text-muted ">Total Income</p>
 							</div>
 						</div>

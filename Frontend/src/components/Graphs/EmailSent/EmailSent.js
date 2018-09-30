@@ -3,7 +3,7 @@ import React, { Component, Fragment } from "react";
 class EmailSent extends Component {
 
 	componentDidMount(){
-		fetch("http://localhost:3001/email")
+		fetch("http://localhost:3001/api/email")
 			.then(result => result.json())
 			.then(res => {
 				let state = {};
