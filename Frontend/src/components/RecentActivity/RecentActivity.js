@@ -12,9 +12,7 @@ class RecentActivity extends Component {
      }
 
 componentWillMount(){
-    console.log(this.state)
       this.fetchRecentActivities();
-      console.log(this.state)
 }
 
 fetchRecentActivities =()=>{
@@ -45,8 +43,7 @@ fetchRecentActivities =()=>{
                                   const date = item.date;
                                   let parseDate = Date.parse(date);
                                   let readyDate=moment(parseDate).format('MMM DD');    
-                                  console.log('im date ' + readyDate, 'Im activity' + item.activity)              
-                               
+
                                   return (
                                       <li className="feed-item" key={item.i}>
                                          <div className="feed-item-list">
