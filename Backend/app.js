@@ -20,11 +20,15 @@ app.use(bodyParser.json());
 //Route imports below 
 const monthlyEarningsLeftRoutes = require("./routes/graphs/monthlyEarningsLeft/monthlyEarningsLeftSide");
 const emailSent = require("./routes/graphs/emailSent/emailSent");
+const exampleRoutes = require("./routes/exampleRoute/exampleRoute.js");
+const recentActivityRoutes = require("./routes/recentActivityRoute/recentActivity.route.js");
+const yearlySalesRoutes = require("./routes/yearlySalesRoute/yearlySales.route.js");
 
 //rest api route declares below 
 app.use("/", monthlyEarningsLeftRoutes);
 app.use("/", emailSent);
+app.use("/api/example", exampleRoutes);
+app.use("/api/recentActivity", recentActivityRoutes);
+app.use("/api/yearlySales", yearlySalesRoutes);
 
-
-//
 module.exports = app;
