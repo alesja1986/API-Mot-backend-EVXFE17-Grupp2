@@ -1,24 +1,29 @@
-import React, { Fragment } from "react";
 
-import DashBoard from "./DashBoard/DashBoard.js";
-import Wrapper from "./Wrapper/Wrapper.js";
-import CardCollection from "./Information/index.js";
-import Graphs from "./Graphs";
-import Tables from "./Tables";
-import RecentActivity from "./RecentActivity/RecentActivity.js";
-import YearlySales from "./YearlySales/YearlySales.js";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+
+import Landing from "./Auth/Landing";
+import Login from "./Auth/Login";
+import Register from "./Auth/Register";
+import Main from "./Auth/Main";
+
+
 
 export default render => {
-	render (
-		<Fragment>
-			<DashBoard/>
-			<Wrapper>
-				<CardCollection />
-				<Graphs />
-				<Tables />
-				<RecentActivity/>
-			    <YearlySales/>
-			</Wrapper>
-		</Fragment>
+	render(
+
+
+		<Router>
+			<div className="App">
+
+				<Route exact path="/" component={Landing} />
+				<div className="container">
+					<Route exact path="/register" component={Register} />
+					<Route exact path="/login" component={Login} />
+					<Route exact path="/main" component={Main} />
+				</div>
+			</div>
+		</Router>
 	);
 };

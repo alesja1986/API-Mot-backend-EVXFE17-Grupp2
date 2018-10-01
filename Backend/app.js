@@ -6,7 +6,7 @@ const app = express();
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    if(req.method === "OPTIONS") {
+    if (req.method === "OPTIONS") {
         res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
         return res.status(200).json({});
     }
@@ -25,6 +25,8 @@ const transactionRoute = require('./routes/transactionRoute/transaction.route');
 const orderRoute = require('./routes/orderRoute/order.route');
 const recentActivityRoutes = require("./routes/recentActivityRoute/recentActivity.route.js");
 const yearlySalesRoutes = require("./routes/yearlySalesRoute/yearlySales.route.js");
+const inboxRoutes = require("./routes/inboxRoute/inbox.route");
+const userRoutes = require("./routes/userRoute/user.route");
 
 //rest api route declares below 
 app.use("/", monthlyEarningsLeftRoutes);
@@ -34,5 +36,7 @@ app.use('/api/transactions', transactionRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/recentActivity", recentActivityRoutes);
 app.use("/api/yearlySales", yearlySalesRoutes);
+app.use("/inbox", inboxRoutes);
+app.use("/users", userRoutes);
 
 module.exports = app;
