@@ -2,11 +2,20 @@
     height: 100vh;
     width: 100%;
     background-color: aliceblue;
+    border: .5px solid lightgrey;
     }
     
-    #landingBtns{
+    #land{
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 0 auto;
     }
+
+    #land button {
+        color: darkgrey;
+        border: 0.1px solid grey;
+    }
+
+    

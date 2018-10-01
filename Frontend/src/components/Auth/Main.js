@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 // import jwt_decode from 'jwt-decode'
 
 //IMPORT ALL COMPONENTS HERE
@@ -11,10 +11,7 @@ import Inbox from "../Inbox/Inbox.js";
 import RecentActivity from "../RecentActivity/RecentActivity.js";
 import YearlySales from "../YearlySales/YearlySales.js";
 
-
-
 class Main extends Component {
-
 
     render() {
         return (
@@ -29,7 +26,7 @@ class Main extends Component {
                     <YearlySales />
                 </Wrapper>
             </div>
-        )
+        );
     }
 }
 
