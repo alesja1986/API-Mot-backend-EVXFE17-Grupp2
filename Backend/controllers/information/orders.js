@@ -20,7 +20,6 @@ exports.getOrders = (req, res) => {
     Orders.find()
     .exec()
     .then( (result) => {
-        console.log(result);
         res.status(200).json(result)
     })
 

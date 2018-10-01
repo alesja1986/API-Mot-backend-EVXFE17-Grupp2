@@ -21,7 +21,6 @@ exports.getProducts = (req, res) => {
     Product.find()
     .exec()
     .then( (result) => {
-        console.log(result);
         res.status(200).json(result)
     })
 
