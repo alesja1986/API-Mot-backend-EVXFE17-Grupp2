@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { register } from "./UserFunctions";
 
 class Register extends Component {
@@ -12,10 +12,16 @@ class Register extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.backBtn = this.backBtn.bind(this);
     }
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
+    }
+
+    backBtn(e) {
+        e.preventDefault();
+        this.props.history.push("/");
     }
 
     onSubmit(e) {
@@ -31,10 +37,7 @@ class Register extends Component {
         });
     }
 
-    backBtn(e) {
-        e.preventDefault();
-        this.props.history.push("/");
-    }
+
 
     render() {
         return (
@@ -64,7 +67,7 @@ class Register extends Component {
                             <button type="submit" className="btn btn-lg btn-primary btn-block">
                                 Sign Up
 							</button>
-                            <button type="button" className="btn btn-lg btn-light btn-block" onClick={this.backBtn.bind(this)}>Go Back</button>
+                            <button type="button" className="btn btn-lg btn-light btn-block" onClick={this.backBtn}>Go Back</button>
                         </form>
                     </div>
                 </div>

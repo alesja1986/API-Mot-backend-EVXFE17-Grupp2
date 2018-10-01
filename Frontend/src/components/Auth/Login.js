@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { login } from "./UserFunctions";
 
 class Login extends Component {
@@ -12,6 +12,7 @@ class Login extends Component {
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.backBtn = this.backBtn.bind(this);
     }
 
     onChange(e) {
@@ -66,7 +67,7 @@ class Login extends Component {
                             <button type="submit" className="btn btn-lg btn-primary btn-block">
                                 Sign In
                             </button>
-                            <button type="button" className="btn btn-lg btn-light btn-block" onClick={this.backBtn.bind(this)}>
+                            <button type="button" className="btn btn-lg btn-light btn-block" onClick={this.backBtn}>
                                 Go Back
                             </button>
                         </form>
