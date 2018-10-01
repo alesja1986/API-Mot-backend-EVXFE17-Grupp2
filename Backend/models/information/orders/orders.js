@@ -6,4 +6,4 @@ const ordersSchema = mongodb.Schema({
     price: Number,
 })
 
-module.exports = mongodb.model('order', ordersSchema)
+module.exports = mongodb.model('ordere', ordersSchema)
