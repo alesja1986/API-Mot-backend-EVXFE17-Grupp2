@@ -38,6 +38,7 @@ describe("Testing /api/monthlyearningleft routes to return their respective type
 
 describe("Testing /api/email to return expected format", function(){
     it('Should be returning a proper formated date e.g "2018-22-12" should not work', (done) =>{
+
         fetch("http://localhost:3001/api/email")
             .then(result => result.json())
             .then(value => {
@@ -45,3 +46,46 @@ describe("Testing /api/email to return expected format", function(){
             }).then(done, done);
     })
 })
+
+//Alesja test
+describe("Testing /api/yearlysales routes to return sales for specific year", function(){
+    it("Should return a array", (done) =>{
+
+        fetch("http://localhost:3001/api/yearlysales/2018")
+            .then(result => result.json())
+            .then(value => {
+                expect(value).to.be.a('array');
+            }).then(done, done);        
+    })   
+
+    it("Should include a date 2018", (done) =>{
+
+        fetch("http://localhost:3001/api/yearlysales/2018")
+            .then(result => result.json())
+            .then(value => {
+                expect(value[0].date).to.include(2018);
+            }).then(done, done);        
+    })   
+
+    it("Should return 2 items", (done) =>{
+        
+    fetch("http://localhost:3001/api/yearlysales/2017")
+        .then(result => result.json())
+        .then(value => {
+            expect(value).to.have.lengthOf(2);
+        })
+        .then(done, done);        
+})
+})
+/*
+describe("Testing /api/recentactivity to return string", function(){
+    it('Should return string', (done) =>{
+        fetch("http://localhost:3001/api/recentactivity/1")
+            .then(result => result.json())
+            .then(value => {
+                expect(value[0].activity).to.be.a.dateString();
+            })
+            .then(done, done);
+    })
+})
+*/
