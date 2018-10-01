@@ -1,0 +1,33 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Erik Doc med Swagger"
+  contact:
+    name: "Erik"
+    email: "Olof@swagger.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3001"
+basePath: "/"
+schemes:
+- "http"
+paths:
+  /api/email:
+    get:
+      tags:
+      - "email"
+      summary: "Finds all emails and return them"
+      operationId: "apiEmailGET"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid status value"
+      x-swagger-router-controller: "Email"
+definitions: {}
