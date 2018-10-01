@@ -1,8 +1,6 @@
 const db = require("mongoose");
-const encrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
-const EmailSent = require("../../../models/graphs/emailSent/emailSent");
+const EmailSent = require("../models/emailSent");
 
 exports.getType = (req, res) => {
     EmailSent.find()

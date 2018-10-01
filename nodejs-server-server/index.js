@@ -1,5 +1,9 @@
 'use strict';
 
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+
 var fs = require('fs'),
     path = require('path'),
     http = require('http');
@@ -7,7 +11,7 @@ var fs = require('fs'),
 var app = require('connect')();
 var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
-var serverPort = 3001;
+var serverPort = 3002;
 
 // swaggerRouter configuration
 var options = {
