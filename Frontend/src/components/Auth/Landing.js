@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
 import Main from "./Main.js";
-
-
-
+import "./auth.css";
 
 class Landing extends Component {
+
 
     logOut(e) {
         e.preventDefault()

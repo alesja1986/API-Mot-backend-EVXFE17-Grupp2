@@ -12,8 +12,6 @@ import Main from "./Auth/Main";
 
 export default render => {
 	render(
-
-
 		<Router>
 			<div className="App">
 

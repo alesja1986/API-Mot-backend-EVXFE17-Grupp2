@@ -26,26 +26,6 @@
 //         })
 // }
 
-export const login = user => {
-    fetch('http://localhost:3001/users/login',
-        {
-            method: 'POST',
-            headers: {
-                'Accept': 'Application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username: user.username, password: user.password })
-        })
-        .then(response => response.json())
-        .then((user) => {
-            console.log(user);
-            localStorage.setItem('usertoken', JSON.stringify(user));
-            return user;
-        })
-        .catch(err => console.log('err', err))
-
-};
-
 export const register = newUser => {
     fetch('http://localhost:3001/users/register',
         {
@@ -63,5 +43,31 @@ export const register = newUser => {
         .catch(err => console.log('err', err))
 
 }
+
+export const login = user => {
+    fetch('http://localhost:3001/users/login',
+        {
+            method: 'POST',
+            headers: {
+                'Accept': 'Application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: user.username, password: user.password })
+        })
+        .then(response => response.json())
+        .then((user) => {
+            if (!user.token) {
+                console.log("No user token. Object returned is: " + user);
+            } else {
+                console.log("usertoken: " + user.token); // for testing
+                localStorage.setItem('usertoken', JSON.stringify(user.token));
+                // return user.token; // added this line to copy axios code above
+            }
+        })
+        .catch(err => console.log('err', err))
+
+};
+
+
 
 

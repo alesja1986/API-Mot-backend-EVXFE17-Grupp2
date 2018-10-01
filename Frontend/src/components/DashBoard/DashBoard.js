@@ -1,15 +1,21 @@
 import React, { Component, Fragment } from "react";
+import { Link, withRouter } from 'react-router-dom';
 
 class DashBoard extends Component {
+	logOut(e) {
+		e.preventDefault()
+		localStorage.removeItem('usertoken')
+		this.props.history.push(`/login`)
+	}
 
-	render(){
+	render() {
 		return (
 			<header id="topnav">
 				<div className="topbar-main">
 					<div className="container-fluid">
 
 						<div className="logo">
-                        
+
 							<a href="index.html" className="logo">
 								<img src="assets/images/logo-sm.png" alt="" className="logo-small" />
 								<img src="assets/images/logo.png" alt="" className="logo-large" />
@@ -20,14 +26,14 @@ class DashBoard extends Component {
 						<div className="menu-extras topbar-custom">
 
 							<ul className="float-right list-unstyled mb-0 ">
-                            
+
 								<li className="dropdown notification-list d-none d-sm-block">
 									<form role="search" className="app-search">
-										<div className="form-group mb-0"> 
+										<div className="form-group mb-0">
 											<input type="text" className="form-control" placeholder="Search.." />
 											<button type="submit"><i className="fa fa-search"></i></button>
 										</div>
-									</form> 
+									</form>
 								</li>
 
 								<li className="dropdown notification-list">
@@ -36,7 +42,7 @@ class DashBoard extends Component {
 										<span className="badge badge-pill badge-danger noti-icon-badge">3</span>
 									</a>
 									<div className="dropdown-menu dropdown-menu-right dropdown-menu-lg">
-                           
+
 										<h6 className="dropdown-item-text">
 										</h6>
 										<div className="slimscroll notification-item-list">
@@ -60,17 +66,17 @@ class DashBoard extends Component {
 												<div className="notify-icon bg-primary"><i className="mdi mdi-cart-outline"></i></div>
 												<p className="notify-details">Your order is placed<span className="text-muted">Dummy text of the printing and typesetting industry.</span></p>
 											</a>
-                                        
+
 											<a href="javascript:void(0);" className="dropdown-item notify-item">
 												<div className="notify-icon bg-danger"><i className="mdi mdi-message"></i></div>
 												<p className="notify-details">New Message received<span className="text-muted">You have 87 unread messages</span></p>
 											</a>
 										</div>
-                                    
+
 										<a href="javascript:void(0);" className="dropdown-item text-center text-primary">
-                                        View all <i className="fi-arrow-right"></i>
+											View all <i className="fi-arrow-right"></i>
 										</a>
-									</div>        
+									</div>
 								</li>
 								<li className="dropdown notification-list">
 									<div className="dropdown notification-list nav-pro-img">
@@ -78,18 +84,18 @@ class DashBoard extends Component {
 											<img src="assets/images/users/user-4.jpg" alt="user" className="rounded-circle" />
 										</a>
 										<div className="dropdown-menu dropdown-menu-right profile-dropdown ">
-                                    
+
 											<a className="dropdown-item" href="#"><i className="mdi mdi-account-circle m-r-5"></i> Profile</a>
 											<a className="dropdown-item" href="#"><i className="mdi mdi-wallet m-r-5"></i> My Wallet</a>
 											<a className="dropdown-item d-block" href="#"><span className="badge badge-success float-right">11</span><i className="mdi mdi-settings m-r-5"></i> Settings</a>
 											<a className="dropdown-item" href="#"><i className="mdi mdi-lock-open-outline m-r-5"></i> Lock screen</a>
 											<div className="dropdown-divider"></div>
-											<a className="dropdown-item text-danger" href="#"><i className="mdi mdi-power text-danger"></i> Logout</a>
-										</div>                                                                    
+											<a className="dropdown-item text-danger nav-link" href="#" onClick={this.logOut.bind(this)}><i className="mdi mdi-power text-danger"></i> Logout</a>
+										</div>
 									</div>
 								</li>
 								<li className="menu-item">
-                            
+
 									<a className="navbar-toggle nav-link" id="mobileToggle">
 										<div className="lines">
 											<span></span>
@@ -97,8 +103,8 @@ class DashBoard extends Component {
 											<span></span>
 										</div>
 									</a>
-                                
-								</li>    
+
+								</li>
 							</ul>
 						</div>
 
@@ -114,7 +120,7 @@ class DashBoard extends Component {
 								<h4 className="page-title">Dashboard</h4>
 								<ol className="breadcrumb">
 									<li className="breadcrumb-item active">
-                                    Welcome to Lexa Dashboard
+										Welcome to Lexa Dashboard
 									</li>
 								</ol>
 								<div className="state-information">
@@ -144,13 +150,13 @@ class DashBoard extends Component {
 									</a>
 								</li>
 							</ul>
-                       
-						</div> 
-					</div> 
-				</div> 
+
+						</div>
+					</div>
+				</div>
 			</header>
 		);
 	}
 }
 
-export default DashBoard;
+export default withRouter(DashBoard);
