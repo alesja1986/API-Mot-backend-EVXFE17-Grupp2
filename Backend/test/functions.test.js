@@ -45,3 +45,36 @@ describe("Testing /api/email to return expected format", function(){
             }).then(done, done);
     })
 })
+
+// Robins test-fall
+
+describe("Testing /api/orders to return expected type", function(){
+    it("Should return a boolean", (done) =>{
+        
+        fetch("http://localhost:3001/api/orders/")
+            .then(result => result.json())
+            .then(value => {
+                expect(value[0].edit).to.be.a('boolean');
+            })
+            .then(done, done);        
+    })
+    it("Should return string", (done) =>{
+        
+        fetch("http://localhost:3001/api/orders/")
+            .then(result => result.json())
+            .then(value => {
+                expect(value[0].productname).to.be.a('string');
+            })
+            .then(done, done);        
+    })
+
+    it("Should return a number", (done) =>{
+        
+        fetch("http://localhost:3001/api/orders/")
+            .then(result => result.json())
+            .then(value => {
+                expect(value[0].price).to.be.a('number');
+            })
+            .then(done, done);        
+    })
+})

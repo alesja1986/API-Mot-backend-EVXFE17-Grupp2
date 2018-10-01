@@ -16,7 +16,7 @@ export const ItemComponent = ({productname, status, price, created, index, editP
 			<td><span className="badge badge-pill badge-success">{status}</span></td>
 		}
 		<td>
-			{price}
+			{price}kr
 		</td>
 		<td>
 			{created}
@@ -37,7 +37,7 @@ export const ItemComponent = ({productname, status, price, created, index, editP
 				</select>
 			</td>
 			<td>
-				<input type="text" placeholder="edit price..." id={`editProductPrice${index}`} defaultValue={price} />
+				<input type="number" placeholder="edit price..." id={`editProductPrice${index}`} defaultValue={price} />
 			</td>
 			<td>
 				<button type="submit" onClick={saveEdit}>Submit</button>
