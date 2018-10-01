@@ -45,3 +45,29 @@ describe("Testing /api/email to return expected format", function(){
             }).then(done, done);
     })
 })
+
+//Simon tester
+describe("Fetching from orders", function(){
+    it("Price should be an number", (done) =>{
+
+        fetch("http://localhost:3001/api/simon/orders")
+            .then(result => result.json())
+            .then(value => {
+                expect(value[0].price).to.be.a("Number");
+            })
+            .then(done, done);        
+    })
+})
+
+describe("Fetching from products", function(){
+    it("name should be a string", (done) =>{
+
+        fetch("http://localhost:3001/api/simon/products")
+            .then(result => result.json())
+            .then(value => {
+                expect(value[0].name).to.be.a("String");
+            })
+            .then(done, done);        
+    })
+})
+//Simon tester ENDS
