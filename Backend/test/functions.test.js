@@ -77,15 +77,4 @@ describe("Testing /api/yearlysales routes to return sales for specific year", fu
         .then(done, done);        
 })
 })
-/*
-describe("Testing /api/recentactivity to return string", function(){
-    it('Should return string', (done) =>{
-        fetch("http://localhost:3001/api/recentactivity/1")
-            .then(result => result.json())
-            .then(value => {
-                expect(value[0].activity).to.be.a.dateString();
-            })
-            .then(done, done);
-    })
-})
-*/
+
