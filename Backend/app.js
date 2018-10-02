@@ -27,6 +27,8 @@ const recentActivityRoutes = require("./routes/recentActivityRoute/recentActivit
 const yearlySalesRoutes = require("./routes/yearlySalesRoute/yearlySales.route.js");
 const inboxRoutes = require("./routes/inboxRoute/inbox.route");
 const userRoutes = require("./routes/userRoute/user.route");
+const ordersRoute = require("./routes/information/orders.js")
+const productRoute = require("./routes/information/productSold.js")
 
 //rest api route declares below 
 app.use("/", monthlyEarningsLeftRoutes);
@@ -39,4 +41,8 @@ app.use("/api/yearlySales", yearlySalesRoutes);
 app.use("/inbox", inboxRoutes);
 app.use("/users", userRoutes);
 
+app.use('/api/simon/orders', ordersRoute)
+app.use('/api/simon/products', productRoute)
+
+//
 module.exports = app;

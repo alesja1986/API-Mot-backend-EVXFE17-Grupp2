@@ -1,6 +1,4 @@
 const db = require("mongoose");
-const encrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 const MonthlyEarningsLeft = require("../../../models/graphs/monthlyEarningsLeftSide/monthlyEarningsLeftSide");
 
