@@ -5,7 +5,7 @@ class DashBoard extends Component {
 	logOut(e) {
 		e.preventDefault()
 		localStorage.removeItem('usertoken')
-		this.props.history.push(`/login`)
+		this.props.history.push(`/`)
 	}
 
 	render() {

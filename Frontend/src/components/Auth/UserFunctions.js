@@ -38,9 +38,12 @@ export const register = newUser => {
         })
         .then(response => response.json())
         .then((result) => {
-            console.log(result);
+            console.log(result.message);
+            alert(result.message);
         })
-        .catch(err => console.log("err", err));
+        .catch(err => {
+            console.log("err", err);
+        });
 
 };
 
@@ -52,22 +55,20 @@ export const login = user => {
                 "Accept": "Application/json, text/plain, */*",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ username: user.email, password: user.password })
+            body: JSON.stringify({ username: user.username, password: user.password })
         })
         .then(response => response.json())
         .then((user) => {
             if (!user.token) {
-                console.log("No user token. Object returned is: " + user);
+                console.log("Authentication failed");
+                alert("authenrication failed");
             } else {
                 console.log("usertoken: " + user.token); // for testing
                 localStorage.setItem("usertoken", JSON.stringify(user.token));
-                // return user.token; // added this line to copy axios code above
+
             }
         })
         .catch(err => console.log("err", err));
 
 };
-
-
-
 

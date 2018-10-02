@@ -1,6 +1,5 @@
 
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import { login } from "./UserFunctions";
 
 class Login extends Component {
@@ -23,15 +22,16 @@ class Login extends Component {
         e.preventDefault();
 
         const user = {
-            email: this.state.username,
+            username: this.state.username,
             password: this.state.password
         };
 
-        login(user).then(res => {
-            if (res) {
-                this.props.history.push("/main");
-            }
-        });
+        login(user);
+
+        if (localStorage.usertoken) {
+            this.props.history.push("/main");
+        }
+
     }
 
     backBtn(e) {
@@ -78,4 +78,4 @@ class Login extends Component {
     }
 }
 
-export default withRouter(Login);
+export default Login;

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import { register } from "./UserFunctions";
 
 class Register extends Component {
@@ -12,16 +11,16 @@ class Register extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        this.backBtn = this.backBtn.bind(this);
+        this.signInBtn = this.signInBtn.bind(this);
     }
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    backBtn(e) {
+    signInBtn(e) {
         e.preventDefault();
-        this.props.history.push("/");
+        this.props.history.push("/login");
     }
 
     onSubmit(e) {
@@ -32,10 +31,11 @@ class Register extends Component {
             password: this.state.password
         };
 
-        register(user).then(res => {
-            this.props.history.push("/login");
-        });
-    }
+        register(user);
+
+        this.props.history.push("/login");
+    };
+
 
 
 
@@ -67,7 +67,7 @@ class Register extends Component {
                             <button type="submit" className="btn btn-lg btn-primary btn-block">
                                 Sign Up
 							</button>
-                            <button type="button" className="btn btn-lg btn-light btn-block" onClick={this.backBtn}>Go Back</button>
+                            <button type="button" className="btn btn-lg btn-light btn-block" onClick={this.signInBtn}>Sign In</button>
                         </form>
                     </div>
                 </div>
@@ -76,4 +76,4 @@ class Register extends Component {
     }
 }
 
-export default withRouter(Register);
+export default Register;
