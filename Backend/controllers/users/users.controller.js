@@ -13,11 +13,11 @@ exports.signIn = (req, res) => {
         .exec()
         .then(user => {
             if (user.length === 0) {
-                return res.status(401).json({ message: "User email or password is incorrect or empty." });
+                return res.status(401).json({ message: "Username or password is incorrect or empty." });
             } else {
                 encrypt.compare(req.body.password, user[0].password, (err, result) => {
                     if (err) {
-                        return res.status(401).json({ message: "User email or password is incorrect or empty." });
+                        return res.status(401).json({ message: "Username or password is incorrect or empty." });
                     }
 
                     if (result) {
@@ -42,7 +42,7 @@ exports.signUp = (req, res) => {
         .exec()
         .then(user => {
             if (user.length > 0) {
-                return res.status(400).json({ message: `A user with the email ${req.body.username} already exist.` });
+                return res.status(400).json({ message: `User: ${req.body.username} already exist.` });
             } else {
                 encrypt.hash(req.body.password, 10, (err, hash) => {
                     if (err) {

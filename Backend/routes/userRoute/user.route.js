@@ -6,4 +6,4 @@ route.get('/register', users.getAllUsers);
 route.post('/register', users.signUp);
 route.post('/login', users.signIn);
 
-module.exports = route;
+module.exports = route; 
