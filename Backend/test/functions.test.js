@@ -103,3 +103,35 @@ describe("Testing /api/orders to return expected type", function(){
             .then(done, done);        
     })
 })
+
+//Alesjas test
+describe("Testing /api/yearlysales routes to return sales for specific year", function(){
+    it("Should return a array", (done) =>{
+
+        fetch("http://localhost:3001/api/yearlysales/2018")
+            .then(result => result.json())
+            .then(value => {
+                expect(value).to.be.a('array');
+            }).then(done, done);        
+    })   
+
+    it("Should include a date 2018", (done) =>{
+
+        fetch("http://localhost:3001/api/yearlysales/2018")
+            .then(result => result.json())
+            .then(value => {
+                expect(value[0].date).to.include(2018);
+            }).then(done, done);        
+    })   
+
+    it("Should return 2 items", (done) =>{
+        
+    fetch("http://localhost:3001/api/yearlysales/2017")
+        .then(result => result.json())
+        .then(value => {
+            expect(value).to.have.lengthOf(2);
+        })
+        .then(done, done);        
+})
+})
+
