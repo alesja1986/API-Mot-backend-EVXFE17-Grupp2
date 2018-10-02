@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 
 import Main from "./Main.js";
@@ -39,9 +39,9 @@ class Landing extends Component {
             </div>
         );
         return (
-            <div className="container">
+            <Fragment>
                 {localStorage.usertoken ? authLink : loginRegLink}
-            </div>
+            </Fragment>
         );
     }
 
