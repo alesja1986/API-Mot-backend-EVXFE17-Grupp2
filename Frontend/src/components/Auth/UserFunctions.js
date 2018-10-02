@@ -52,7 +52,7 @@ export const login = user => {
                 "Accept": "Application/json, text/plain, */*",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ username: user.username, password: user.password })
+            body: JSON.stringify({ username: user.email, password: user.password })
         })
         .then(response => response.json())
         .then((user) => {
