@@ -142,7 +142,7 @@ describe("Testing /api/yearlysales routes to return sales for specific year", fu
 //Malins test
 
 let user = {
-    username: "ny", //Change username every time to pass creating-new-user-test
+    username: "ny1", //Change username every time to pass creating-new-user-test
     password: "hejsan"
 };
 
