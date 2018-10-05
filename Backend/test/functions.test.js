@@ -237,3 +237,15 @@ describe('Logging in the User', function () {
     });
 
 });
+
+describe("Fetching inbox", function () {
+    it("name should be a string", (done) => {
+
+        fetch("http://localhost:3001/inbox")
+            .then(result => result.json())
+            .then(value => {
+                expect(value[0].name).to.be.a("String");
+            })
+            .then(done, done);
+    })
+})
